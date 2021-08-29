@@ -53,7 +53,14 @@
         <% end %>
       </div>
 
+
       <div class="form-group">
+       <% if @book_comment.errors.any? %>
+        <%= @book_comment.errors.count %>prohibited this obj from being saved:
+        <% @book_comment.errors.full_messages.each do |message| %>
+         <%= message %>
+        <% end %>
+       <% end %>
        <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
         <%= f.text_area :comment, rows:'5', class: "form-control" %>
         <p>
